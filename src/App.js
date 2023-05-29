@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { Header } from "./component/Header";
+import { Footer } from "./component/Footer";
+import { Allroutes } from "./component/Allroutes";
+import { UserContext } from "./component/constant";
+import { useState } from "react";
 function App() {
+  const [provider, setProvider] = useState(null);
+  const [signer, setSigner] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [account, setaccount] = useState(null);
+
+  const [state, setState] = useState("CONNECT WALLET");
+
+  const [balance, setbalance] = useState("0");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider
+      value={{
+        provider,
+        setProvider,
+        signer,
+        setSigner,
+        contract,
+        setContract,
+        account,
+        setaccount,
+        state,
+        setState,
+        balance,
+        setbalance,
+      }}
+    >
+      <Header />
+      <Allroutes />
+      <Footer />
+    </UserContext.Provider>
   );
 }
 
